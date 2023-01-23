@@ -29,7 +29,7 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.avengers = require('./empmodel')(sequelize, DataTypes)
+db.mymaster11 = require('./empmodel')(sequelize, DataTypes)
 
 
 db.sequelize.sync({ force: false })

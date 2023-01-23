@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         mobile_number: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         designation: {
@@ -18,13 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         status: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue:1,
+            defaultValue:1
         },
         is_deleted: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue:0,
+            defaultValue:0
         }
     })
     return Employee;
