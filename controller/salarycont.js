@@ -13,16 +13,16 @@ client.on("error", (err) => {
 const getAll = async (req, res) => {
     // const id = req.query.id
     try {
-        client.get('api',async (err, Salarys) => {
+        client.get('api',async (err, salaries) => {
             if (err) throw err;
-            if (Salarys) {
+            if (salaries) {
                 console.log("catched from redis");
-                res.status(200).send(JSON.parse(Salarys));
+                res.status(200).send(JSON.parse(salaries));
             }
             else {
-                let Salarys = await Salary.findAll({})
-                client.setex('api',600, JSON.stringify(Salarys));
-                res.status(200).send(Salarys);
+                let salaries = await Salary.findAll({})
+                client.setex('api',600, JSON.stringify(salaries));
+                res.status(200).send(salaries);
                 console.log("fetched from mysql")
             }
         })
@@ -38,16 +38,16 @@ const getAll = async (req, res) => {
 const getOne = async (req, res) => {
     const id = req.query.id
     try {
-        client.get(id, async (err, Salary) => {
+        client.get(id, async (err, salary) => {
             if (err) throw err;
-            if (Salary) {
+            if (salary) {
                 console.log("catched from redis");
-                res.status(200).send(JSON.parse(Salary));
+                res.status(200).send(JSON.parse(salary));
             }
             else {
-                let Salary = await Salary.findOne({ where: { id: id } })
-                client.setex(id, 600, JSON.stringify(Salary));
-                res.status(200).send(Salary);
+                let salary = await Salary.findOne({ where: { id: id } })
+                client.setex(id, 600, JSON.stringify(salary));
+                res.status(200).send(salary);
                 console.log("fetched from mysql")
             }
         })
@@ -60,18 +60,18 @@ const getOne = async (req, res) => {
 
 //**************************************************************************************************************************
 
-const addEmp=async(req,res)=>{
+const addSal=async(req,res)=>{
     let info = {
         salary: req.body.salary,
         empID: req.body.empID
     }
-    const emp = await Salary.create(info)
-    res.status(200).send(emp)
+    const sal = await Salary.create(info)
+    res.status(200).send(sal)
 }
 
 /****************************************************************************************************************************** */
 
-const deleteEmp=async(req,res)=>{
+const deleteSal=async(req,res)=>{
     const id = req.params.id
     await Salary.update({is_deleted:1,status:0},{where: { id: id }})
     res.status(200).send("Salary is deleted")
@@ -83,6 +83,6 @@ const deleteEmp=async(req,res)=>{
 module.exports = {
     getAll,
     getOne,
-    addEmp,
-    deleteEmp
+    addSal,
+    deleteSal
 }
