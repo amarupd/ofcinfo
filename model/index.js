@@ -30,6 +30,7 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.mymaster11 = require('./empmodel')(sequelize, DataTypes)
+db.mymaster11=require('./salmodel')(sequelize,DataTypes)
 
 
 db.sequelize.sync({ force: false })
