@@ -1,0 +1,79 @@
+const db=require("../model")
+const Employee = db.mymaster11;
+const redis = require("redis");
+const redisPort = "redis://127.0.0.1:6379"
+// const redisPort = "redis://default:ovDFb4qIVC7PoaIdIDlsaE4ymM97Aaf3@redis-12561.c264.ap-south-1-1.ec2.cloud.redislabs.com:12561"
+const client = redis.createClient(redisPort);
+
+client.on("error", (err) => {
+    console.log(err);
+})
+//***************************************************************************************************************************** */
+
+const getAll = async (req, res) => {
+    // const id = req.query.id
+    try {
+        client.get('api',async (err, employees) => {
+            if (err) throw err;
+            if (employees) {
+                console.log("catched from redis");
+                res.status(200).send(JSON.parse(emp));
+            }
+            else {
+                let employees = await Employee.findAll({})
+                client.setex('api',600, JSON.stringify(employees));
+                res.status(200).send(employees);
+                console.log("fetched from mysql")
+            }
+        })
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+
+}
+
+//********************************************************************************************************************************** */
+
+
+const getOne = async (req, res) => {
+    const id = req.query.id
+    try {
+        client.get(id, async (err, employee) => {
+            if (err) throw err;
+            if (employee) {
+                console.log("catched from redis");
+                res.status(200).send(JSON.parse(employee));
+            }
+            else {
+                let employee = await Employee.findOne({ where: { id: id } })
+                client.setex(id, 600, JSON.stringify(employee));
+                res.status(200).send(employee);
+                console.log("fetched from mysql")
+            }
+        })
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+
+}
+
+
+//**************************************************************************************************************************
+
+const addEmp=async(req,res)=>{
+    let info = {
+        title: req.body.title,
+        price: req.body.price,
+        description: req.body.description,
+        published: req.body.published ? req.body.published : false
+    }
+    const emp = await Employee.create(info)
+    res.status(200).send(emp)
+}
+
+/****************************************************************************************************************************** */
+
+module.exports = {
+    getAll,
+    getOne
+}
