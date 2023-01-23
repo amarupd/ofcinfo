@@ -17,7 +17,7 @@ const getAll = async (req, res) => {
             if (err) throw err;
             if (employees) {
                 console.log("catched from redis");
-                res.status(200).send(JSON.parse(emp));
+                res.status(200).send(JSON.parse(employees));
             }
             else {
                 let employees = await Employee.findAll({})
@@ -75,8 +75,18 @@ const addEmp=async(req,res)=>{
 
 /****************************************************************************************************************************** */
 
+const deleteEmp=async(req,res)=>{
+    const id = req.params.id
+    await Employee.update({is_deleted:1,status:0},{where: { id: id }})
+    res.status(200).send("employee is deleted")
+}
+
+
+
+
 module.exports = {
     getAll,
     getOne,
-    addEmp
+    addEmp,
+    deleteEmp
 }
