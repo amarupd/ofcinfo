@@ -9,7 +9,7 @@ router.get('/getall', empController.getAll)
 router.get('/getone', empController.getOne)
 
 
-router.get('/addemp', empController.addEmp)
+router.post('/addemp', empController.addEmp)
 
 
 module.exports = router;
