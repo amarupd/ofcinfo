@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Employee = sequelize.define("mymaster11", {
+    const Employee = sequelize.define("employees", {
         fullname: {
             type: DataTypes.STRING,
             allowNull: false
@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         designation: {
             type: DataTypes.STRING,
+            allowNull: false
+        },
+        dateofjoining: {
+            type: DataTypes.DATE,
             allowNull: false
         },
         status: {

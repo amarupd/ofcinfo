@@ -1,29 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
-    const Employee = sequelize.define("mymaster11", {
-        fullname: {
-            type: DataTypes.STRING,
+    const Employee = sequelize.define("salaries", {
+        salary: {
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         },
-        email: {
-            type: DataTypes.STRING,
+        empID: {
+            type: DataTypes.INTEGER,
             allowNull: false
-        },
-        mobile_number: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        designation: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        status: {
-            type: DataTypes.BOOLEAN,
-            defaultValue:1
-        },
-        is_deleted: {
-            type: DataTypes.BOOLEAN,
-            defaultValue:0
         }
+    }, {
+        timestamps: false
     })
     return Employee;
 }
