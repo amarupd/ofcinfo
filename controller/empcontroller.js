@@ -62,10 +62,12 @@ const getOne = async (req, res) => {
 
 const addEmp=async(req,res)=>{
     let info = {
-        title: req.body.title,
-        price: req.body.price,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
+        fullname: req.body.fullname,
+        email: req.body.email,
+        mobile_number: req.body.mobile_number,
+        designation: req.body.designation,
+        status: req.body.status,
+        is_deleted: req.body.is_deleted
     }
     const emp = await Employee.create(info)
     res.status(200).send(emp)
