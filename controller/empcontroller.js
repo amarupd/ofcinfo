@@ -77,5 +77,6 @@ const addEmp=async(req,res)=>{
 
 module.exports = {
     getAll,
-    getOne
+    getOne,
+    addEmp
 }
