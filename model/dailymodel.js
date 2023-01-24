@@ -5,7 +5,15 @@ module.exports=(sequelize,DataTypes)=>{
             allowNull:false
         },
         punchIN:{
-            type:Datatypes.TIME,
+            type:DataTypes.TIME,
+            allowNull:false
+        },
+        punchOUT:{
+            type:DataTypes.TIME,
+            allowNull:false
+        },
+        empID:{
+            type:DataTypes.INTEGER,
             allowNull:false
         }
     })
