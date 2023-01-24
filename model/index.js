@@ -29,13 +29,16 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.mymaster11 = require('./empmodel')(sequelize, DataTypes)
-db.mymaster11=require('./salmodel')(sequelize,DataTypes)
+db.employees = require('./empmodel')(sequelize, DataTypes)
+
+db.salaries=require('./salmodel')(sequelize,DataTypes)
 
 
-db.sequelize.sync({ force: false })
+db.sequelize.sync({ force: true })
     .then(() => {
         console.log('re-sync done');
     })
+
+
 
 module.exports = db
