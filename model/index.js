@@ -34,7 +34,7 @@ db.employees = require('./empmodel')(sequelize, DataTypes)
 db.salaries=require('./salmodel')(sequelize,DataTypes)
 
 
-db.sequelize.sync({ force: true })
+db.sequelize.sync({ force: false })
     .then(() => {
         console.log('re-sync done');
     })

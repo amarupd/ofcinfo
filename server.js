@@ -1,6 +1,6 @@
 const express = require("express");
 const router = require("./routes/emproutes");
-// const srouter = require("./routes/salroutes");
+const srouter = require("./routes/salroutes");
 const cors = require("cors");
 const app = express();
 const port = process.env.port || 8050;
@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use("/", router);
+app.use("/salary", srouter);
 app.get("", (req, res) => {
     res.json({ message: "hello from api" });
 });

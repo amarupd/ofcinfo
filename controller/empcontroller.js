@@ -1,6 +1,6 @@
 const db=require("../model")
 // const sal=require("../controller/salarycont")
-const Employee = db.mymaster11;
+const Employee = db.employees;
 // const Salary = db.mymaster11;
 const redis = require("redis");
 const redisPort = "redis://127.0.0.1:6379"
