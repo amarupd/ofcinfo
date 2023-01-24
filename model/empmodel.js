@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         dateofjoining: {
             type: DataTypes.DATE,
-            allowNull: false
+            allowNull: false,
+            defaultValue: new Date()
         },
         status: {
             type: DataTypes.BOOLEAN,

@@ -1,6 +1,6 @@
 const salController=require('../controller/salarycont')
 
-const srouter=require('express').Router
+const srouter=require('express').Router()
 
 srouter.get('/getall',salController.getAll)
 

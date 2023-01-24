@@ -9,7 +9,7 @@ router.get('/getall', empController.getAll)
 router.get('/getone', empController.getOne)
 
 
-router.post('/addemp', empController.addEmp)
+router.put('/addemp', empController.addEmp)
 
 
 router.delete('/delete/:id', empController.deleteEmp)

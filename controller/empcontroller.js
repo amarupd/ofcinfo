@@ -1,5 +1,7 @@
 const db=require("../model")
+const sal=require("../controller/salarycont")
 const Employee = db.mymaster11;
+const Salary = db.mymaster11;
 const redis = require("redis");
 const redisPort = "redis://127.0.0.1:6379"
 // const redisPort = "redis://default:ovDFb4qIVC7PoaIdIDlsaE4ymM97Aaf3@redis-12561.c264.ap-south-1-1.ec2.cloud.redislabs.com:12561"
@@ -69,8 +71,14 @@ const addEmp=async(req,res)=>{
         status: req.body.status,
         is_deleted: req.body.is_deleted
     }
+    let salary={
+        salary: req.body.salary,
+        empid: req.body.empid
+    }
     const emp = await Employee.create(info)
     res.status(200).send(emp)
+    const salar=await Salary.create(salary)
+    res.status(200).send(salar);
 }
 
 /****************************************************************************************************************************** */
