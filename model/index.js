@@ -44,7 +44,7 @@ db.employees.hasOne(db.salaries,{
 })
 db.salaries.belongsTo(db.employees,{
     foreignKey:'salID',
-    as:'empID'
+    as:'employee'
 })
 
 

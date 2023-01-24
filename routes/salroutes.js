@@ -8,6 +8,6 @@ srouter.get('/getone',salController.getOne)
 
 srouter.post('/addsal',salController.addSal)
 
-srouter.delete('/getall',salController.deleteSal)
+srouter.delete('/delete:id',salController.deleteSal)
 
 module.exports=srouter;
