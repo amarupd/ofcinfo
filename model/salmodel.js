@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Employee = sequelize.define("salaries", {
+    const Salary = sequelize.define("salaries", {
         salary: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
@@ -11,5 +11,5 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         timestamps: false
     })
-    return Employee;
+    return Salary;
 }
