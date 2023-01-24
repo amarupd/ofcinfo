@@ -15,5 +15,6 @@ router.post('/addemp', empController.addEmp)
 router.delete('/delete/:id', empController.deleteEmp)
 
 
+router.get('/getempsal', empController.getEmpSal)
 
 module.exports = router;

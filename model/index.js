@@ -39,12 +39,12 @@ db.sequelize.sync({ force: false })
         console.log('re-sync done');
     })
 db.employees.hasOne(db.salaries,{
-    foreignKey: 'salID',
-    as:'salary'
+    foreignKey: 'empID',
+    as:'salaries'
 })
 db.salaries.belongsTo(db.employees,{
-    foreignKey:'salID',
-    as:'employee'
+    foreignKey:'empID',
+    as:'employees'
 })
 
 
