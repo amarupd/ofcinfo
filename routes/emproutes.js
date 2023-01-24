@@ -3,16 +3,16 @@ const empController = require('../controller/empcontroller')
 const router = require('express').Router()
 
 
-router.get('/employee/getall', empController.getAll)
+router.get('/getall', empController.getAll)
 
 
-router.get('/employee/getone', empController.getOne)
+router.get('/getone', empController.getOne)
 
 
-router.post('/employee/addemp', empController.addEmp)
+router.post('/addemp', empController.addEmp)
 
 
-router.delete('/employee/delete/:id', empController.deleteEmp)
+router.delete('/delete/:id', empController.deleteEmp)
 
 
 
