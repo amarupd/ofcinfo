@@ -38,7 +38,14 @@ db.sequelize.sync({ force: false })
     .then(() => {
         console.log('re-sync done');
     })
-
+db.employees.hasOne(db.salaries,{
+    foreignKey: 'salID',
+    as:'salary'
+})
+db.salaries.belongsTo(db.employees,{
+    foreignKey:'salID',
+    as:'empID'
+})
 
 
 module.exports = db
