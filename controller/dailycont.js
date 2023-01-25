@@ -72,9 +72,9 @@ const punchout=async(req,res)=>{
    // let punchi = await Timestamp.findOne({ where: { id: id } })
     // let puncho = await Timestamp.findOne({ where: { id: id } })
     if(punchi !='NULL' || puncho!= 'NULL'){
-        await Timestamp.update({ missed_punch: 0}, {where: {id: id}})
+        await Timestamp.update({ missed_punch: 0}, {where: {id: id}})  /// yaha update karna h dimaaag lagao
      } else {
-        await Timestamp.update({ missed_punch: 1}, {where: {id: id}})
+        await Timestamp.update({ missed_punch: 1}, {where: {id: id}})/// yaha update karna h dimaaag lagao
      }
      
 }
