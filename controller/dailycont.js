@@ -27,26 +27,24 @@ const addTimeStamp=async(req,res)=>{
 //sequelize.literal('CURRENT_TIMESTAMP)
 
 const punchin=async(req,res)=>{
-    const id = req.params.id
+    const id = req.body.id
     await Timestamp.update({punchIN : sequelize.literal('CURRENT_TIMESTAMP') },{where: { empID: id }})
     res.status(200).send("thank you")
 }
 
 
 const punchout=async(req,res)=>{
-    const id = req.params.id
+    const id = req.body.id
     await Timestamp.update({punchOUT : sequelize.literal('CURRENT_TIMESTAMP') },{where: { empID: id }})
     res.status(200).send("thank you")
-    let punchi=await sequelize.query('SELECT punchIN FROM timestamps WHERE empID =:id',
+    let punchi=await db.query('SELECT punchIN FROM timestamps WHERE empID =:id',
         {
-            replacements: { id: id },
-            type: QueryTypes.SELECT
+            replacements: { id: id }
           }
       );
-      let puncho=await sequelize.query('SELECT punchOUT FROM timestamps WHERE empID =:id',
+      let puncho=await db.query('SELECT punchOUT FROM timestamps WHERE empID =:id',
         {
-            replacements: { id: id },
-            type: QueryTypes.SELECT
+            replacements: { id: id }
           }
       );
    // let punchi = await Timestamp.findOne({ where: { id: id } })

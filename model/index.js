@@ -13,8 +13,7 @@ const sequelize = new Sequelize(
         acquire: dbConfig.pool.acquire,
         idle: dbConfig.pool.idle
     }
-}
-)
+})
 sequelize.authenticate()
     .then(() => {
         console.log("database is connected");
@@ -31,32 +30,32 @@ db.sequelize = sequelize
 
 db.employees = require('./empmodel')(sequelize, DataTypes)
 
-db.salaries=require('./salmodel')(sequelize,DataTypes)
+db.salaries = require('./salmodel')(sequelize, DataTypes)
 
-db.timestamps=require('./dailymodel')(sequelize,DataTypes)
+db.timestamps = require('./dailymodel')(sequelize, DataTypes)
 
 
 db.sequelize.sync({ force: false })
     .then(() => {
         console.log('re-sync done');
     })
-db.employees.hasOne(db.salaries,{
+db.employees.hasOne(db.salaries, {
     foreignKey: 'empID',
-    as:'salaries'
+    as: 'salaries'
 })
-db.salaries.belongsTo(db.employees,{
-    foreignKey:'empID',
-    as:'employees'
+db.salaries.belongsTo(db.employees, {
+    foreignKey: 'empID',
+    as: 'employees'
 })
 
 
-db.employees.hasOne(db.timestamps,{
+db.employees.hasOne(db.timestamps, {
     foreignKey: 'empID',
-    as:'timestamps'
+    as: 'timestamps'
 })
-db.timestamps.belongsTo(db.employees,{
-    foreignKey:'empID',
-    as:'employees'
+db.timestamps.belongsTo(db.employees, {
+    foreignKey: 'empID',
+    as: 'employees'
 })
 
 

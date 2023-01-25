@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         missed_punch: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: 0
+            defaultValue: 1
         }
     }, {
         timestamps: false
