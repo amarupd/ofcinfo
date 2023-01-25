@@ -1,6 +1,7 @@
 const express = require("express");
 const router = require("./routes/emproutes");
 const srouter = require("./routes/salroutes");
+const drouter = require("./routes/dailyroute");
 const cors = require("cors");
 const app = express();
 const port = process.env.port || 8050;
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/employee", router);
 app.use("/salary", srouter);
+app.use("/time", drouter);
 app.get("", (req, res) => {
     res.json({ message: "hello from api" });
 });

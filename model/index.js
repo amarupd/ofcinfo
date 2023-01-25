@@ -33,6 +33,8 @@ db.employees = require('./empmodel')(sequelize, DataTypes)
 
 db.salaries=require('./salmodel')(sequelize,DataTypes)
 
+db.timestamps=require('./dailymodel')(sequelize,DataTypes)
+
 
 db.sequelize.sync({ force: false })
     .then(() => {
@@ -43,6 +45,16 @@ db.employees.hasOne(db.salaries,{
     as:'salaries'
 })
 db.salaries.belongsTo(db.employees,{
+    foreignKey:'empID',
+    as:'employees'
+})
+
+
+db.employees.hasOne(db.timestamps,{
+    foreignKey: 'empID',
+    as:'timestamps'
+})
+db.timestamps.belongsTo(db.employees,{
     foreignKey:'empID',
     as:'employees'
 })

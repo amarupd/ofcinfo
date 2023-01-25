@@ -5,8 +5,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         date: {
-            type: DataTypes.DATE,
-            allowNull: false
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+            defaultValue: new Date()
         },
         punchIN: {
             type: DataTypes.TIME,
