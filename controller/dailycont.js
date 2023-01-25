@@ -1,5 +1,6 @@
 const db=require("../model")
 const Timestamp = db.timestamps;
+const sequelize=require('sequelize')
 const redis = require("redis");
 const redisPort = "redis://127.0.0.1:6379"
 // const redisPort = "redis://default:ovDFb4qIVC7PoaIdIDlsaE4ymM97Aaf3@redis-12561.c264.ap-south-1-1.ec2.cloud.redislabs.com:12561"
@@ -27,22 +28,22 @@ const addTimeStamp=async(req,res)=>{
 
 const punchin=async(req,res)=>{
     const id = req.params.id
-    await Timestamp.update({punchIN : sequelize.literal('CURRENT_TIMESTAMP') },{where: { id: id }})
+    await Timestamp.update({punchIN : sequelize.literal('CURRENT_TIMESTAMP') },{where: { empID: id }})
     res.status(200).send("thank you")
 }
 
 
 const punchout=async(req,res)=>{
     const id = req.params.id
-    await Timestamp.update({punchOUT : sequelize.literal('CURRENT_TIMESTAMP') },{where: { id: id }})
+    await Timestamp.update({punchOUT : sequelize.literal('CURRENT_TIMESTAMP') },{where: { empID: id }})
     res.status(200).send("thank you")
-    let punchi=await sequelize.query('SELECT punchIN FROM timestamps WHERE id :id',
+    let punchi=await sequelize.query('SELECT punchIN FROM timestamps WHERE empID =:id',
         {
             replacements: { id: id },
             type: QueryTypes.SELECT
           }
       );
-      let puncho=await sequelize.query('SELECT punchOUT FROM timestamps WHERE id =:id',
+      let puncho=await sequelize.query('SELECT punchOUT FROM timestamps WHERE empID =:id',
         {
             replacements: { id: id },
             type: QueryTypes.SELECT
@@ -51,9 +52,9 @@ const punchout=async(req,res)=>{
    // let punchi = await Timestamp.findOne({ where: { id: id } })
     // let puncho = await Timestamp.findOne({ where: { id: id } })
     if(punchi !=NULL || puncho!= NULL){
-        await Timestamp.update({ missed_punch: 0}, {where: {id: id}})
+        await Timestamp.update({ missed_punch: 0}, {where: {empID: id}})
      } else {
-        await Timestamp.update({ missed_punch: 1}, {where: {id: id}})
+        await Timestamp.update({ missed_punch: 1}, {where: {empID: id}})
      }
 }
 

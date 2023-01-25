@@ -22,6 +22,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0
         }
+    }, {
+        timestamps: false
     })
     return Punch;
 }
