@@ -37,7 +37,6 @@ const addTimeStamp=async(req,res)=>{
         date: req.body.date,
         punchIN: req.body.punchIN,
         punchOUT: req.body.punchOUT,
-        empID: req.body.empID,
         missed_punch: req.body.missed_punch
     }
     
@@ -85,12 +84,10 @@ const details=async(req,res)=>{
 }
 
 /***************************************************************************************************************************** */
-const  {dequelize, DataTypes} => {
-    const Punch = sequelize.define("timestamps", {
-        empID: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+const empId='10';
+
+const data= (sequelize, DataTypes) => {
+    const Punch = sequelize.define(`emp${empId}s`, {
         date: {
             type: DataTypes.DATEONLY,
             allowNull: false,
