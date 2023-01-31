@@ -22,8 +22,8 @@ const { QueryTypes } = require('sequelize');
 
 const redis = require("redis");
 // const { Sequelize } = require("../model");
-const redisPort = "redis://127.0.0.1:6379"
-// const redisPort = "redis://default:ovDFb4qIVC7PoaIdIDlsaE4ymM97Aaf3@redis-12561.c264.ap-south-1-1.ec2.cloud.redislabs.com:12561"
+// const redisPort = "redis://127.0.0.1:6379"
+const redisPort = "redis://default:ovDFb4qIVC7PoaIdIDlsaE4ymM97Aaf3@redis-12561.c264.ap-south-1-1.ec2.cloud.redislabs.com:12561"
 const client = redis.createClient(redisPort);
 
 client.on("error", (err) => {
