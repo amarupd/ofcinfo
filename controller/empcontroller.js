@@ -99,11 +99,86 @@ const getEmpSal=async(req,res)=>{
     res.status(200).send(data)
 }
 
+const updateEmp = async (req, res) => {
+    let Id = req.params.id;
+    const product = await Employee.update(req.body, { where: { id: Id } })
+    res.status(200).send("results updated succesfully");
+}
+
+
+
+
+const submit=async(req,res)=>{
+    let Id = req.body.id;
+    if(Id=='NULL' || Id==0){
+        let info = {
+            fullname: req.body.fullname,
+            email: req.body.email,
+            mobile_number: req.body.mobile_number,
+            designation: req.body.designation,
+            status: req.body.status,
+            is_deleted: req.body.is_deleted
+        }
+        
+        const emp = await Employee.create(info)
+        res.status(200).send(emp)
+    }
+    else{
+        const product = await Employee.update(req.body, { where: { id: Id } })
+        res.status(200).send("results updated succesfully");
+    }
+}
+
+
+
+//operATion
+
+
+const submits=async(req,res)=>{
+    let Id = req.body.op;
+    switch (Id) {
+        case '0':
+            let info = {
+                fullname: req.body.fullname,
+                email: req.body.email,
+                mobile_number: req.body.mobile_number,
+                designation: req.body.designation,
+                status: req.body.status,
+                is_deleted: req.body.is_deleted
+            }
+            
+            const emp = await Employee.create(info)
+            res.status(200).send(emp)
+            break;
+        
+        case '1':
+            let Iid = req.body.id;
+            const product = await Employee.update(req.body, { where: { id: Iid } })
+            res.status(200).send("results updated succesfully");
+            break;
+
+        case '2':
+            let id = req.body.id;
+            await Employee.update({is_deleted:1,status:0},{where: { id: id }})
+            res.status(200).send("employee is deleted")
+            break;
+        default:
+            res.send("0 for add employee, 1 for update, 2 for delete").status(400)
+            break;
+    }
+}
+
+
+
+
 
 module.exports = {
     getAll,
     getOne,
     addEmp,
     deleteEmp,
-    getEmpSal
+    getEmpSal,
+    updateEmp,
+    submit,
+    submits
 }
