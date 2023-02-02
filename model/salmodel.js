@@ -2,11 +2,11 @@ module.exports = (sequelize, DataTypes) => {
     const Salary = sequelize.define("salaries", {
         salary: {
             type: DataTypes.DECIMAL(10, 2),
-            allowNull: false
+            allowNull: true
         },
         empID: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         }
     }, {
         timestamps: false

@@ -2,23 +2,23 @@ module.exports = (sequelize, DataTypes) => {
     const Employee = sequelize.define("employees", {
         fullname: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         mobile_number: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         designation: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         dateofjoining: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
             defaultValue: new Date()
         },
         status: {
