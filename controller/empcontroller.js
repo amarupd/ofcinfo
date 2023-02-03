@@ -11,6 +11,8 @@ const client = redis.createClient(redisPort);
 client.on("error", (err) => {
     console.log(err);
 })
+const sequelize=require('../sequelizetemplate')
+
 //***************************************************************************************************************************** */
 
 const getAll = async (req, res) => {
@@ -81,7 +83,7 @@ const addEmp=async(req,res)=>{
 
 const deleteEmp=async(req,res)=>{
     const id = req.params.id
-    await Employee.update({is_deleted:1,status:0},{where: { id: id }})
+    await Employee.update({is_deleted:1,status:0,dateofresigning:sequelize.literal('CURRENT_TIMESTAMP')},{where: { id: id }})
     res.status(200).send("employee is deleted")
 }
 

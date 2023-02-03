@@ -16,10 +16,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true
         },
+        reporting_to: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         dateofjoining: {
             type: DataTypes.DATE,
             allowNull: true,
             defaultValue: new Date()
+        },
+        dateofresigning: {
+            type: DataTypes.DATE,
+            allowNull: true
         },
         status: {
             type: DataTypes.BOOLEAN,
