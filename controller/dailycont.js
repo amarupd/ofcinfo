@@ -49,16 +49,16 @@ const punchout = async (req, res) => {
     {
         type: QueryTypes.SELECT
     });
-    res.status(200).send({message:"thank you",data:punchi})
+    res.status(200).send({message:"thank you",data:puncho})
     let mappedArray = punchou.map(item => item.totaltime);
     const str=mappedArray.toString();
 
     console.log(str);
     
     if (punchi != 'NULL' || puncho != 'NULL') {
-        await Timestamp.update({ missed_punch: 0 }, { where: { id: id } })  /// yaha update karna h dimaaag lagao yhi pe date wala karna h
+        await Timestamp.update({ missed_punch: 0 }, { where: { empID: id } })  /// yaha update karna h dimaaag lagao yhi pe date wala karna h
     } else {
-        await Timestamp.update({ missed_punch: 1 }, { where: { id: id } }) /// yaha update karna h dimaaag lagao yhi pe date wala karna h
+        await Timestamp.update({ missed_punch: 1 }, { where: { empID: id } }) /// yaha update karna h dimaaag lagao yhi pe date wala karna h
     }
   
 
