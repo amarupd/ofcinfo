@@ -18,6 +18,7 @@ client.on("error", (err) => {
 /********************************************************************************************** */
 const punchin = async (req, res) => {
     // const id = req.body.id
+    
     let info = {
         date: req.body.date,
         punchIN: sequelize.literal('CURRENT_TIMESTAMP'),
