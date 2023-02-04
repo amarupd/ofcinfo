@@ -156,13 +156,15 @@ const submits=async(req,res)=>{
         case '1':
             let Iid = req.body.id;
             const product = await Employee.update(req.body, { where: { id: Iid } })
-            res.status(200).send("results updated succesfully");
+            const prod=await Employee.findOne({ where: { id: Iid } })
+            res.status(200).send({message:'user updated succesfully',data:prod});
             break;
 
         case '2':
             let id = req.body.id;
-            await Employee.update({is_deleted:1,status:0},{where: { id: id }})
-            res.status(200).send("employee is deleted")
+            await Employee.update({is_deleted:1,status:0,dateofresigning:sequelize.literal('CURRENT_TIMESTAMP')},{where: { id: id }})
+            const prods=await Employee.findOne({ where: { id: id } })
+            res.status(200).send({message:'user deleted succesfully',data:prods})
             break;
         default:
             res.send("0 for add employee, 1 for update, 2 for delete").status(400)

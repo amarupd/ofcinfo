@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize')
-const dbConfig = require('../config/dbconfig')
+const dbConfig = require('../config/dbConfig')
 const sequelize = new Sequelize(
     dbConfig.DB,
     dbConfig.USER,

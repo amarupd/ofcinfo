@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: 1
+        },
+        total_working_hour: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     }, {
         timestamps: false

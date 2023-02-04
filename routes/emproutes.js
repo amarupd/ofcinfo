@@ -22,6 +22,6 @@ router.put("/update/:id",empController.updateEmp)
 
 router.put("/submit",empController.submit)
 
-router.put("/submits",empController.submits)
+router.post("/submits",empController.submits)
 
 module.exports = router;
